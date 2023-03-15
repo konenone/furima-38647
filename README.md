@@ -1,17 +1,16 @@
 ## users テーブル
 
-|Column        |Type   |Options     |
-|--------------|-------|------------|
-|nickname      |string |null: false |
-|mail          |string |null: false |
-|password      |string |null: false |
-|firstname     |string |null: false |
-|lastname      |string |null: false |
-|firstname-kana|string |null: false |
-|lastname-kana |string |null: false |
-|birth-year    |integer|null: false |
-|birth-month   |integer|null: false |
-|birth-day     |integer|null: false |
+|Column              |Type   |Options                 |
+|--------------------|-------|------------------------|
+|nickname            |string |null: false             |
+|email               |string |null: false ,unique:true|
+|encrypted_password  |string |null: false             |
+|firstname           |string |null: false             |
+|lastname            |string |null: false             |
+|firstname_kana      |string |null: false             |
+|lastname_kana       |string |null: false             |
+|birthday            |date   |null: false             |
+
 
 ### Association
 has_many :purchase_records
@@ -24,42 +23,43 @@ has_many :items
 |-------------------|-----------|-------------------------------|
 |name               |string     |null: false                    |
 |introduction       |text       |null: false                    |
-|user_id            |references |null: false, foreign_key: true |
+|user               |references |null: false, foreign_key: true |
 |category_id        |integer    |null: false                    |
 |status_id          |integer    |null: false                    |
 |shipping_charges_id|integer    |null: false                    |
 |shipping_area_id   |integer    |null: false                    |
 |days_to_ship_id    |integer    |null: false                    |
+|price              |integer    |null: false                    |
 
 ### Association
-has_one :purchase_records
+has_one :purchase_record
 
 
 ## purchase_records テーブル
 
-|Column             |Type       |Options                        |
-|-------------------|-----------|-------------------------------|
-|user_id            |references |null: false, foreign_key: true |
-|item_id            |references |null: false, foreign_key: true |
+|Column          |Type       |Options                        |
+|----------------|-----------|-------------------------------|
+|user            |references |null: false, foreign_key: true |
+|item            |references |null: false, foreign_key: true |
 
 ### Association
-belongs_to :shipping_addresses
-
+has_one :shipping_address
+has_one :item
+belongs_to :user
 
 ## shipping_addresses テーブル
 
-|Column         |Type    |Options     |
-|---------------|--------|------------|
-|post_code      |integer |null: false |
-|prefectures_id |integer |null: false |
-|municipalities |text    |null: false |
-|address        |text    |null: false |
-|building_name  |text    |            |
-|phone_number   |integer |null: false |
-
+|Column          |Type      |Options                       |
+|----------------|----------|------------------------------|
+|post_code       |string    |null: false                   |
+|shipping_area_id|integer   |null: false                   |
+|municipalities  |string    |null: false                   |
+|address         |string    |null: false                   |
+|building_name   |string    |                              |
+|phone_number    |string    |null: false                   |
+|purchase_record |references|null: false, foreign_key: true| 
 
 ### Association
-
-
+has_one :purchase_record
 
 
