@@ -44,7 +44,7 @@ belongs_to :user
 |item            |references |null: false, foreign_key: true |
 
 ### Association
-has_many :shipping_address
+has_one :shipping_address
 belongs_to :item
 belongs_to :user
 
