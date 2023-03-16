@@ -26,13 +26,14 @@ has_many :items
 |user               |references |null: false, foreign_key: true |
 |category_id        |integer    |null: false                    |
 |status_id          |integer    |null: false                    |
-|shipping_charges_id|integer    |null: false                    |
+|shipping_charge_id |integer    |null: false                    |
 |shipping_area_id   |integer    |null: false                    |
 |days_to_ship_id    |integer    |null: false                    |
 |price              |integer    |null: false                    |
 
 ### Association
-has_one :purchase_record
+has_many :purchase_records
+belongs_to :user
 
 
 ## purchase_records テーブル
@@ -43,8 +44,8 @@ has_one :purchase_record
 |item            |references |null: false, foreign_key: true |
 
 ### Association
-has_one :shipping_address
-has_one :item
+has_many :shipping_address
+belongs_to :item
 belongs_to :user
 
 ## shipping_addresses テーブル
@@ -60,6 +61,6 @@ belongs_to :user
 |purchase_record |references|null: false, foreign_key: true| 
 
 ### Association
-has_one :purchase_record
+belongs_to :purchase_record
 
 
