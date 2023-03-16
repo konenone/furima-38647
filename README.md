@@ -32,7 +32,7 @@ has_many :items
 |price              |integer    |null: false                    |
 
 ### Association
-has_many :purchase_records
+has_one :purchase_record
 belongs_to :user
 
 
