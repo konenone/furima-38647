@@ -95,7 +95,7 @@ RSpec.describe User, type: :model do
       it "passwordは英数字混合でないと登録できない" do
         @user.password = "000000"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
       it '重複したemailが存在する場合は登録できない' do
         @user.save
@@ -132,12 +132,12 @@ RSpec.describe User, type: :model do
       it 'パスワードが半角英字のみでは登録できないこと' do
         @user.password = 'abcdef'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
       it 'パスワードが全角では登録できないこと' do
         @user.password = 'ABCDFE'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password is invalid")
       end
     end
   end

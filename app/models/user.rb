@@ -14,13 +14,13 @@ class User < ApplicationRecord
     validates :lastname    #全角（漢字・ひらがな・カタカナ）での入力が必須
   end
 
-  with_options presence: true, format: { with: /\A[ァ-ヶ]+\z/ } do
+  with_options presence: true, format: { with: /\A[ァ-ヶー]+\z/ } do
     validates :firstname_kana   #全角（カタカナ）での入力が必須
     validates :lastname_kana    #全角（カタカナ）での入力が必須
   end
 
   validates :birthday, presence: true
 
-  has_many :purchase_records
-  has_many :items
+  #has_many :purchase_records
+  #has_many :items
 end
