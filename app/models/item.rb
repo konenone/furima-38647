@@ -21,7 +21,7 @@ class Item < ApplicationRecord
     validates :shipping_area_id
     validates :days_to_ship_id
     # 300円以上かつ9,999,999円以下で、半角数字でないと入力不可
-    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+    validates :price, numericality: { only_integer:true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   end
 
   with_options numericality: { other_than: 0 } do
