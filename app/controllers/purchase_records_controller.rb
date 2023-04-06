@@ -4,7 +4,6 @@ class PurchaseRecordsController < ApplicationController
   
   def index
     @order_form = OrderForm.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
